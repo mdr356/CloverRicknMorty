@@ -3,7 +3,7 @@ package com.clover.cloverricknmorty.data.model
 /*
 No need to use @SerializeName annotation becuase we are using the same variable name as server
 */
-data class Rick_n_Morty(
+data class Characters(
     val info: Info
 )
 data class Info(

@@ -47,9 +47,8 @@ abstract class BaseFragment<VBinding : ViewBinding> : Fragment() {
     open fun setUpViewModel(){}
 
     private fun init() {
-        binding = getViewBinding()
-        setUpViewModel()
-
+        binding = getViewBinding() // inflate view
+        setUpViewModel() // setup view model
      }
 
     // container which can hold multiple disposable

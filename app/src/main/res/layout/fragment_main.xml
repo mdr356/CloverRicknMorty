@@ -6,12 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.view.MainFragment">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone" />
+        tools:context=".MainActivity">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
 
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     <ProgressBar
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"

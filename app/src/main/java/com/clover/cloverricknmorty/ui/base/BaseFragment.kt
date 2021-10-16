@@ -37,13 +37,13 @@ abstract class BaseFragment<VBinding : ViewBinding> : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setUpViewModel()
         setUpViews()
-        observeData()
+        observeData(false)
     }
 
     // default optional empty implementation for views
     open fun setUpViews() {}
     open fun observeView() {}
-    open fun observeData() {}
+    open fun observeData(refreshApiCall : Boolean) {}
     open fun setUpViewModel(){}
 
     private fun init() {

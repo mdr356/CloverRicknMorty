@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.clover.cloverricknmorty.data.api.ApiHelper
 import com.clover.cloverricknmorty.data.api.RetrofitBuilder
 import com.clover.cloverricknmorty.data.model.CharacterList
@@ -48,11 +49,15 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
             )
         )
         binding.recyclerView.adapter = adapter
+
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            observeData(true)
+        }
     }
 
-    override fun observeData() {
-        super.observeData()
-        viewModel.getCharacters().observe(this, {
+    override fun observeData(refreshApiCall : Boolean) {
+        super.observeData(refreshApiCall)
+        viewModel.getCharacters(refreshApiCall).observe(this, {
             it?.let { resource ->
                 when (resource.status) {
                     Status.SUCCESS -> {
@@ -60,17 +65,20 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
                         binding.recyclerView.visibility = View.VISIBLE
                         binding.progressBar.visibility = View.GONE
                         resource.data?.let { it -> addList(it) }
+                        binding.swipeRefreshLayout.isRefreshing = false
                     }
                     Status.ERROR -> {
                         Timber.d("Request Error")
                         binding.recyclerView.visibility = View.VISIBLE
                         binding.progressBar.visibility = View.GONE
+                        binding.swipeRefreshLayout.isRefreshing = false
                         Toast.makeText(activity, it.message, Toast.LENGTH_LONG).show()
                     }
                     Status.LOADING -> {
                         Timber.d("Request Loading")
                         binding.progressBar.visibility = View.VISIBLE
                         binding.recyclerView.visibility = View.GONE
+                        binding.swipeRefreshLayout.isRefreshing = false
                     }
                 }
             }

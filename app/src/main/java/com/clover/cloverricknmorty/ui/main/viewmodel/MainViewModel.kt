@@ -19,8 +19,8 @@ class MainViewModel(
 
     // using coroutine to take care of long running operation
     //network thread -> Dispatchers.IO
-    fun getCharacters() = liveData(Dispatchers.IO) {
-        if (isDatabaseEmpty()) {
+    fun getCharacters(refreshApiCall: Boolean = false) = liveData(Dispatchers.IO) {
+        if (isDatabaseEmpty() || refreshApiCall) {
             Timber.d("API call to Request Characters")
             emit(Resource.loading(null)) // loading
             try {

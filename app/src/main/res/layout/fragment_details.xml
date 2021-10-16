@@ -4,24 +4,121 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.details.view.DetailsFragment">
+    tools:context=".ui.details.view.DetailsFragment"
+    android:padding="@dimen/fab_margin">
 
-    <TextView
-        android:id="@+id/textview_second"
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf= "parent"
+        tools:ignore="contentDescription"
+        android:text="@string/name"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_location_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/button_second"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="@dimen/spacing"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        tools:ignore="contentDescription"
+        android:text="@string/location"/>
 
-    <Button
-        android:id="@+id/button_second"
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/location"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/previous"
+        android:layout_marginTop="@dimen/spacing"
+        android:paddingStart="@dimen/fab_margin"
+        android:paddingLeft="@dimen/fab_margin"
+        app:layout_constraintLeft_toRightOf="@id/text_location_title"
+        app:layout_constraintTop_toBottomOf="@+id/image"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        tools:ignore="contentDescription" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_type_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/location"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        tools:ignore="contentDescription"
+        android:text="@string/type"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing"
+        android:paddingStart="@dimen/fab_margin"
+        android:paddingLeft="@dimen/fab_margin"
+        app:layout_constraintLeft_toRightOf="@id/text_location_title"
+        app:layout_constraintTop_toBottomOf="@+id/location"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        tools:ignore="contentDescription" />
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_dimension_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/type"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        tools:ignore="contentDescription"
+        android:text="@string/dimension"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/dimension"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing"
+        android:paddingStart="@dimen/fab_margin"
+        android:paddingLeft="@dimen/fab_margin"
+        app:layout_constraintLeft_toRightOf="@id/text_location_title"
+        app:layout_constraintTop_toBottomOf="@+id/type"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        tools:ignore="contentDescription" />
+
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_residents_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dimension"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        tools:ignore="contentDescription"
+        android:text="@string/residents"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/residents"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing"
+        android:paddingStart="@dimen/fab_margin"
+        android:paddingLeft="@dimen/fab_margin"
+        app:layout_constraintLeft_toRightOf="@id/text_location_title"
+        app:layout_constraintTop_toBottomOf="@+id/dimension"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        tools:ignore="contentDescription"
+         />
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textview_second" />
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

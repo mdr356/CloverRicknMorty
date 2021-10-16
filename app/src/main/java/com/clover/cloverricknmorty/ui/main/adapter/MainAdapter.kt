@@ -9,18 +9,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.clover.cloverricknmorty.R
 import com.clover.cloverricknmorty.data.model.CharacterList
+import org.w3c.dom.Text
 
 class MainAdapter(val characters: ArrayList<CharacterList>): RecyclerView.Adapter<MainAdapter.MyViewHolder>() {
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val textView1: TextView
         val textView2: TextView
-        val imageView: ImageView
+        val textView3: TextView
 
         init {
             // Define click listener for the ViewHolder's View.
-            textView1 = itemView.findViewById(R.id.text)
-            textView2 = itemView.findViewById(R.id.text2)
-            imageView = itemView.findViewById(R.id.image)
+            textView1 = itemView.findViewById(R.id.text_name)
+            textView2 = itemView.findViewById(R.id.text_status)
+            textView3 = itemView.findViewById(R.id.text_species)
         }
     }
 
@@ -31,10 +32,11 @@ class MainAdapter(val characters: ArrayList<CharacterList>): RecyclerView.Adapte
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.textView1.text = characters[position].name
-        holder.textView2.text = characters[position].gender
-        Glide.with(holder.imageView.context)
+        holder.textView2.text = characters[position].status
+        holder.textView3.text = characters[position].species
+       /* Glide.with(holder.imageView.context)
             .load(characters[position].image)
-            .into(holder.imageView)
+            .into(holder.imageView)*/
     }
 
     fun addCharacters(characters: List<CharacterList>) {

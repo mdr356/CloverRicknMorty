@@ -11,6 +11,8 @@ import com.clover.cloverricknmorty.data.api.RetrofitBuilder
 import com.clover.cloverricknmorty.data.model.CharacterList
 import com.clover.cloverricknmorty.databinding.FragmentMainBinding
 import com.clover.cloverricknmorty.ui.base.BaseFragment
+import com.clover.cloverricknmorty.ui.base.MainActivity
+import com.clover.cloverricknmorty.ui.base.MyApplication
 import com.clover.cloverricknmorty.ui.base.ViewModelFactory
 import com.clover.cloverricknmorty.ui.main.adapter.MainAdapter
 import com.clover.cloverricknmorty.ui.main.viewmodel.MainViewModel
@@ -25,12 +27,12 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
     private lateinit var adapter: MainAdapter
     private lateinit var viewModel: MainViewModel
 
-    // todo(): add this to base class.
+    // todo(): add this to base class or implement dagger.
     override fun setUpViewModel() {
         super.setUpViewModel()
         viewModel = ViewModelProvider(
             this,
-            ViewModelFactory(ApiHelper(RetrofitBuilder.apiService))
+            ViewModelFactory(ApiHelper(RetrofitBuilder.apiService), activity?.application as MyApplication)
         ).get(MainViewModel::class.java)
     }
 
@@ -57,7 +59,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
                         Timber.d("Request Success")
                         binding.recyclerView.visibility = View.VISIBLE
                         binding.progressBar.visibility = View.GONE
-                        resource.data?.let { it -> addList(it.results) }
+                        resource.data?.let { it -> addList(it) }
                     }
                     Status.ERROR -> {
                         Timber.d("Request Error")

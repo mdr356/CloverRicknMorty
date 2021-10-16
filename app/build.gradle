@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -81,5 +82,10 @@ dependencies {
     // multi dex
     implementation 'androidx.multidex:multidex:2.0.1'
     implementation 'com.android.support:multidex:1.0.3'
+
+    // Room components
+    implementation "androidx.room:room-ktx:$rootProject.roomVersion"
+    kapt "androidx.room:room-compiler:$rootProject.roomVersion"
+    androidTestImplementation "androidx.room:room-testing:$rootProject.roomVersion"
 
 }

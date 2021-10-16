@@ -14,6 +14,16 @@ buildscript {
     }
     ext {
         roomVersion = '2.3.0'
+        swiperefreshlayoutVersion ='1.1.0'
+        multidexVersion = '2.0.1'
+        multidexSupportVersion = '1.0.3'
+        timberVersion  = '4.7.1'
+        retrofitVersion = '2.9.0'
+        gsonVersion ='2.8.6'
+        converterGsonVersion ='2.9.0'
+        loggingInterceptorVersion ='4.9.0'
+        coroutinesVersion = '1.4.1'
+        cardviewVersion = '1.0.0'
     }
 }
 

@@ -15,6 +15,7 @@ import com.clover.cloverricknmorty.ui.base.ViewModelFactory
 import com.clover.cloverricknmorty.ui.main.adapter.MainAdapter
 import com.clover.cloverricknmorty.ui.main.viewmodel.MainViewModel
 import com.clover.cloverricknmorty.util.Status
+import timber.log.Timber
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
@@ -53,16 +54,19 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
             it?.let { resource ->
                 when (resource.status) {
                     Status.SUCCESS -> {
+                        Timber.d("Request Success")
                         binding.recyclerView.visibility = View.VISIBLE
                         binding.progressBar.visibility = View.GONE
-                        resource.data?.let { it -> addList(it.info.result) }
+                        resource.data?.let { it -> addList(it.results) }
                     }
                     Status.ERROR -> {
+                        Timber.d("Request Error")
                         binding.recyclerView.visibility = View.VISIBLE
                         binding.progressBar.visibility = View.GONE
                         Toast.makeText(activity, it.message, Toast.LENGTH_LONG).show()
                     }
                     Status.LOADING -> {
+                        Timber.d("Request Loading")
                         binding.progressBar.visibility = View.VISIBLE
                         binding.recyclerView.visibility = View.GONE
                     }
@@ -72,6 +76,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
     }
 
     private fun addList(charaterList: List<CharacterList>) {
+        Timber.d("Update RecyclerView with the list of characters")
         adapter.apply {
             addCharacters(charaterList)
             notifyDataSetChanged()

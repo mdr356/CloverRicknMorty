@@ -4,14 +4,14 @@ package com.clover.cloverricknmorty.data.model
 No need to use @SerializeName annotation becuase we are using the same variable name as server
 */
 data class Characters(
-    val info: CharactersInfo
+    val info: CharactersInfo,
+    val results: List<CharacterList>,
 )
 data class CharactersInfo(
     val count: Int? = null,
     val pages: Int? = null,
     val next: String? = null,
     val prev: String? = null,
-    val result: List<CharacterList>,
 )
 data class CharacterList(
     val id: Int? = null,

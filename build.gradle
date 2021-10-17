@@ -28,6 +28,13 @@ buildscript {
         daggerSupportVersion = '2.29.1'
         daggerProcessor = '2.27'
         daggerCompiler = '2.29.1'
+        coreTestingVersion = '2.1.0'
+        espressoCoreVersion ='3.4.0'
+        junitVersion = '1.1.3'
+        livedataKtxVersion = '2.3.1'
+        lifeCycleRuntimeVersion = '2.3.1'
+        glideVersion = '4.9.0'
+        recyclerviewVersion ='1.2.1'
     }
 }
 

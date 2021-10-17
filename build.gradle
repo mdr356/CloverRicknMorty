@@ -24,6 +24,10 @@ buildscript {
         loggingInterceptorVersion ='4.9.0'
         coroutinesVersion = '1.4.1'
         cardviewVersion = '1.0.0'
+        daggerVersion = '2.35.1'
+        daggerSupportVersion = '2.29.1'
+        daggerProcessor = '2.27'
+        daggerCompiler = '2.29.1'
     }
 }
 

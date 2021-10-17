@@ -6,13 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.viewbinding.ViewBinding
+import dagger.android.support.DaggerFragment
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
 /*
  * BaseFragment accepts ViewBinding
  */
-abstract class BaseFragment<VBinding : ViewBinding> : Fragment() {
+abstract class BaseFragment<VBinding : ViewBinding> : DaggerFragment() {
 
     protected lateinit var binding: VBinding
     // getView Binding

@@ -8,8 +8,9 @@ import com.clover.cloverricknmorty.util.Resource
 import kotlinx.coroutines.Dispatchers
 import timber.log.Timber
 import java.util.regex.Pattern
+import javax.inject.Inject
 
-class DetailsViewModel(
+class DetailsViewModel @Inject constructor(
     private val mainRepository: MainRepository,
     private val context: Application
 ) : AndroidViewModel(context) {

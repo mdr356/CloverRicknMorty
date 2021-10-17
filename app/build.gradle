@@ -94,5 +94,10 @@ dependencies {
     // Cardview
     implementation "androidx.cardview:cardview:$rootProject.cardviewVersion"
 
+    //Dagger2
+    implementation "com.google.dagger:dagger:$rootProject.daggerVersion"
+    implementation "com.google.dagger:dagger-android-support:$rootProject.daggerSupportVersion"
+    kapt "com.google.dagger:dagger-android-processor:$rootProject.daggerProcessor"
+    kapt "com.google.dagger:dagger-compiler:$rootProject.daggerCompiler"
 
 }

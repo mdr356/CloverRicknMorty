@@ -4,40 +4,29 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.clover.cloverricknmorty.R
-import com.clover.cloverricknmorty.data.api.ApiHelper
-import com.clover.cloverricknmorty.data.api.RetrofitBuilder
 import com.clover.cloverricknmorty.data.model.CharacterList
 import com.clover.cloverricknmorty.databinding.FragmentMainBinding
 import com.clover.cloverricknmorty.ui.base.BaseFragment
-import com.clover.cloverricknmorty.app.MyApplication
-import com.clover.cloverricknmorty.ui.base.ViewModelFactory
 import com.clover.cloverricknmorty.ui.main.adapter.MainAdapter
 import com.clover.cloverricknmorty.ui.main.adapter.OnItemClickListener
 import com.clover.cloverricknmorty.ui.main.viewmodel.MainViewModel
 import com.clover.cloverricknmorty.util.Status
 import timber.log.Timber
+import javax.inject.Inject
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
 class MainFragment : BaseFragment<FragmentMainBinding>(), OnItemClickListener {
 
-    private lateinit var adapter: MainAdapter
-    private lateinit var viewModel: MainViewModel
+    @Inject
+    lateinit var viewModel: MainViewModel
 
-    // todo(): add this to base class or implement dagger.
-    override fun setUpViewModel() {
-        super.setUpViewModel()
-        viewModel = ViewModelProvider(
-            this,
-            ViewModelFactory(ApiHelper(RetrofitBuilder.apiService), activity?.application as MyApplication)
-        ).get(MainViewModel::class.java)
-    }
+    private lateinit var adapter: MainAdapter
 
     override fun getViewBinding() = FragmentMainBinding.inflate(layoutInflater)
 

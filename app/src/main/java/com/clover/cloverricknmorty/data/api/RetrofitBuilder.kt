@@ -4,6 +4,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 // this is a singleton
+/*
 object RetrofitBuilder {
     private const val BASE_URL = "https://rickandmortyapi.com/api/"
 
@@ -14,4 +15,4 @@ object RetrofitBuilder {
             .build()
     }
     val apiService: ApiService = getRetrofit().create(ApiService::class.java)
-}
+}*/

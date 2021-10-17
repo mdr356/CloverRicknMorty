@@ -8,8 +8,9 @@ import com.clover.cloverricknmorty.data.repository.MainRepository
 import com.clover.cloverricknmorty.util.Resource
 import kotlinx.coroutines.Dispatchers
 import timber.log.Timber
+import javax.inject.Inject
 
-class MainViewModel(
+class MainViewModel @Inject constructor(
     private val mainRepository: MainRepository,
     private val context: Application
 ): AndroidViewModel(context){

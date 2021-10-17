@@ -2,22 +2,18 @@ package com.clover.cloverricknmorty.ui.details.view
 
 import android.view.View
 import android.widget.Toast
-import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
-import com.clover.cloverricknmorty.R
-import com.clover.cloverricknmorty.data.api.ApiHelper
-import com.clover.cloverricknmorty.data.api.RetrofitBuilder
 import com.clover.cloverricknmorty.databinding.FragmentDetailsBinding
 import com.clover.cloverricknmorty.ui.base.BaseFragment
-import com.clover.cloverricknmorty.app.MyApplication
-import com.clover.cloverricknmorty.ui.base.ViewModelFactory
 import com.clover.cloverricknmorty.ui.details.viewmodel.DetailsViewModel
 import com.clover.cloverricknmorty.util.Status
 import timber.log.Timber
+import javax.inject.Inject
 
 class DetailsFragment : BaseFragment<FragmentDetailsBinding>() {
 
-    private lateinit var viewModel: DetailsViewModel
+    @Inject
+    lateinit var viewModel: DetailsViewModel
 
     override fun getViewBinding(): FragmentDetailsBinding = FragmentDetailsBinding.inflate(layoutInflater)
 
@@ -29,7 +25,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>() {
                 Glide.with(binding.image.context)
                     .load(characterList.image)
                     .into(binding.image)
-                    .onLoadStarted(resources.getDrawable(R.drawable.progress_bar))
+                    //.onLoadStarted(resources.getDrawable(R.drawable.progress_bar))
 
                 // API Call to get Location
                 characterList.location?.url?.let { url ->
@@ -58,12 +54,5 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>() {
                 }
             })
         }
-    }
-    override fun setUpViewModel() {
-        super.setUpViewModel()
-        viewModel = ViewModelProvider(
-            this,
-            ViewModelFactory(apiHelper = ApiHelper(RetrofitBuilder.apiService), applicatinContext = activity?.application as MyApplication)
-        ).get(DetailsViewModel::class.java)
     }
 }

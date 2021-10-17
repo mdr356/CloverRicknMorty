@@ -1,4 +1,4 @@
-package com.clover.cloverricknmorty.ui.base
+package com.clover.cloverricknmorty.app
 
 import android.app.Application
 import com.clover.cloverricknmorty.BuildConfig

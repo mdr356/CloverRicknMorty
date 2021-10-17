@@ -9,7 +9,7 @@ import com.clover.cloverricknmorty.data.api.ApiHelper
 import com.clover.cloverricknmorty.data.api.RetrofitBuilder
 import com.clover.cloverricknmorty.databinding.FragmentDetailsBinding
 import com.clover.cloverricknmorty.ui.base.BaseFragment
-import com.clover.cloverricknmorty.ui.base.MyApplication
+import com.clover.cloverricknmorty.app.MyApplication
 import com.clover.cloverricknmorty.ui.base.ViewModelFactory
 import com.clover.cloverricknmorty.ui.details.viewmodel.DetailsViewModel
 import com.clover.cloverricknmorty.util.Status

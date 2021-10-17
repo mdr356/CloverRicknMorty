@@ -39,11 +39,11 @@ class MainViewModel(
         }
     }
 
-    fun isDatabaseEmpty() = mainRepository.loadCharacter_DB(context).getCharacters().isEmpty()
+    private fun isDatabaseEmpty() = mainRepository.loadCharacter_DB(context).getCharacters().isEmpty()
 
-    suspend fun deleteDatabase() = mainRepository.deleteDatabase(context)
+    private suspend fun deleteDatabase() = mainRepository.deleteDatabase(context)
 
-    suspend fun insertDataInDatabase(apiData: List<CharacterList>) {
+    private suspend fun insertDataInDatabase(apiData: List<CharacterList>) {
         deleteDatabase()
         mainRepository.insertCharacters(context, apiData)
     }

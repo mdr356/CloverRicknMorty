@@ -2,22 +2,19 @@ package com.clover.cloverricknmorty.ui.main.view
 
 import android.os.Bundle
 import android.view.View
-import android.widget.AdapterView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.clover.cloverricknmorty.R
 import com.clover.cloverricknmorty.data.api.ApiHelper
 import com.clover.cloverricknmorty.data.api.RetrofitBuilder
 import com.clover.cloverricknmorty.data.model.CharacterList
 import com.clover.cloverricknmorty.databinding.FragmentMainBinding
 import com.clover.cloverricknmorty.ui.base.BaseFragment
-import com.clover.cloverricknmorty.ui.base.MainActivity
-import com.clover.cloverricknmorty.ui.base.MyApplication
+import com.clover.cloverricknmorty.app.MyApplication
 import com.clover.cloverricknmorty.ui.base.ViewModelFactory
 import com.clover.cloverricknmorty.ui.main.adapter.MainAdapter
 import com.clover.cloverricknmorty.ui.main.adapter.OnItemClickListener

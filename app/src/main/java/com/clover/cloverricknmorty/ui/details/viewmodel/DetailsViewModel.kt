@@ -1,7 +1,7 @@
 package com.clover.cloverricknmorty.ui.details.viewmodel
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.clover.cloverricknmorty.data.repository.MainRepository
 import com.clover.cloverricknmorty.util.Resource
@@ -13,7 +13,7 @@ import javax.inject.Inject
 class DetailsViewModel @Inject constructor(
     private val mainRepository: MainRepository,
     private val context: Application
-) : AndroidViewModel(context) {
+) : ViewModel() {
 
     fun getCharacterById(id: Int) = liveData(Dispatchers.Default) {
         emit(mainRepository.getCharacterById(id, context))

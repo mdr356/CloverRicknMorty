@@ -1,16 +1,13 @@
 package com.clover.cloverricknmorty.ui.main.viewmodel
 
 import android.app.Application
-import android.content.Context
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.clover.cloverricknmorty.data.model.CharacterList
 import com.clover.cloverricknmorty.data.repository.MainRepository
 import com.clover.cloverricknmorty.util.Resource
 import kotlinx.coroutines.Dispatchers
 import timber.log.Timber
-import java.lang.Exception
 
 class MainViewModel(
     private val mainRepository: MainRepository,
@@ -26,7 +23,7 @@ class MainViewModel(
             try {
                 val apiData = mainRepository.getCharacters()
                 Timber.i(apiData.toString())
-                insertDataInDatabase(apiData)
+                apiData?.let { insertDataInDatabase(it) }
                 emit(Resource.success(data = apiData))
             } catch (ioException: Exception) {
                 Timber.e("API call error.")

@@ -1,12 +1,16 @@
 package com.clover.cloverricknmorty.ui.main.view
 
+import android.os.Bundle
 import android.view.View
+import android.widget.AdapterView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import com.clover.cloverricknmorty.R
 import com.clover.cloverricknmorty.data.api.ApiHelper
 import com.clover.cloverricknmorty.data.api.RetrofitBuilder
 import com.clover.cloverricknmorty.data.model.CharacterList
@@ -16,6 +20,7 @@ import com.clover.cloverricknmorty.ui.base.MainActivity
 import com.clover.cloverricknmorty.ui.base.MyApplication
 import com.clover.cloverricknmorty.ui.base.ViewModelFactory
 import com.clover.cloverricknmorty.ui.main.adapter.MainAdapter
+import com.clover.cloverricknmorty.ui.main.adapter.OnItemClickListener
 import com.clover.cloverricknmorty.ui.main.viewmodel.MainViewModel
 import com.clover.cloverricknmorty.util.Status
 import timber.log.Timber
@@ -23,7 +28,7 @@ import timber.log.Timber
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-class MainFragment : BaseFragment<FragmentMainBinding>() {
+class MainFragment : BaseFragment<FragmentMainBinding>(), OnItemClickListener {
 
     private lateinit var adapter: MainAdapter
     private lateinit var viewModel: MainViewModel
@@ -41,7 +46,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
 
     override fun setUpViews() {
         binding.recyclerView.layoutManager = LinearLayoutManager(activity)
-        adapter = MainAdapter(arrayListOf())
+        adapter = MainAdapter(arrayListOf(), this)
         binding.recyclerView.addItemDecoration(
             DividerItemDecoration(
                 binding.recyclerView.context,
@@ -93,7 +98,9 @@ class MainFragment : BaseFragment<FragmentMainBinding>() {
         }
     }
 
-        /*binding.buttonFirst.setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
-        }*/
+    override fun onItemClicked(characterId: Int) {
+        findNavController().navigate(
+            R.id.action_MainFragment_to_DetailsFragment,
+            Bundle().apply { putInt("characterId", characterId) })
+    }
 }

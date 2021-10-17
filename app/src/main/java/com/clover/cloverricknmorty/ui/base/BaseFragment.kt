@@ -35,7 +35,6 @@ abstract class BaseFragment<VBinding : ViewBinding> : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setUpViewModel()
         setUpViews()
         observeData(false)
     }

@@ -4,12 +4,16 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.clover.cloverricknmorty.data.model.CharacterList
+import com.clover.cloverricknmorty.util.RoomCharactersOriginConverter
+import com.clover.cloverricknmorty.util.RoomListConverter
 
 
 // Annotates class to be a Room Database with a table (entity) of the Word class
+@TypeConverters(RoomCharactersOriginConverter::class, RoomListConverter::class)
 @Database(entities = arrayOf(CharacterList::class), version = 1, exportSchema = false)
-public abstract class CharacterListRoomDatabase : RoomDatabase() {
+abstract class CharacterListRoomDatabase : RoomDatabase() {
 
     abstract fun characterDao(): CharacterDao
 

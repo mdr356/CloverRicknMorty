@@ -1,8 +1,8 @@
 package com.clover.cloverricknmorty.data.model
 
-import androidx.room.Entity
-import androidx.room.Ignore
-import androidx.room.PrimaryKey
+import androidx.room.*
+import com.clover.cloverricknmorty.util.RoomCharactersOriginConverter
+import com.clover.cloverricknmorty.util.RoomListConverter
 
 /*
 No need to use @SerializeName annotation becuase we are using the same variable name as server
@@ -18,7 +18,7 @@ data class CharactersInfo(
     val next: String? = null,
     val prev: String? = null,
 )
-@Entity(primaryKeys = ["id"], ignoredColumns = ["origin","location", "episode"])
+@Entity(primaryKeys = ["id"])
 data class CharacterList(
     var id: Int = 0,
     var name: String? = null,
@@ -26,16 +26,16 @@ data class CharacterList(
     var species: String? = null,
     var type: String? = null,
     var gender: String? = null,
+    @TypeConverters(RoomCharactersOriginConverter::class)
     var origin: CharactersOrigin? = null,
+    @TypeConverters(RoomCharactersOriginConverter::class)
     var location: CharactersOrigin? = null,
     var image: String? = null,
+    @TypeConverters(RoomListConverter::class)
     var episode: List<String?>? = null,
     var url: String? = null
 
-) {
-    constructor(): this(0,"","","","","",
-        CharactersOrigin(), CharactersOrigin(), "", listOf(), "")
-}
+)
 
 data class CharactersOrigin(
     val name: String? = null,

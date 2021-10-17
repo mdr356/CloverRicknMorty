@@ -6,4 +6,6 @@ package com.clover.cloverricknmorty.data.api
  */
 class ApiHelper(val apiService: ApiService) {
     suspend fun getCharacters() = apiService.getCharacters()
+
+    suspend fun getCharacterLocations(id: String) = apiService.getCharacterLocation(id)
 }

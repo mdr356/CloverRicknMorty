@@ -5,7 +5,6 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.clover.cloverricknmorty.R
-import com.clover.cloverricknmorty.data.api.ApiHelper
 import com.clover.cloverricknmorty.data.api.RetrofitBuilder
 import com.clover.cloverricknmorty.databinding.FragmentDetailsBinding
 import com.clover.cloverricknmorty.ui.base.BaseFragment

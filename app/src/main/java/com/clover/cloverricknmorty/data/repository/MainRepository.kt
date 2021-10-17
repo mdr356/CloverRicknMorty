@@ -1,13 +1,12 @@
 package com.clover.cloverricknmorty.data.repository
 
 import android.content.Context
-import com.clover.cloverricknmorty.data.api.ApiHelper
 import com.clover.cloverricknmorty.data.model.CharacterList
 import com.clover.cloverricknmorty.data.model.CharacterLocation
 import com.clover.cloverricknmorty.data.roomdatabase.DataBaseInstance
 import timber.log.Timber
 
-class MainRepository(private val apiHelper: ApiHelper? = null) {
+class MainRepository() {
 
     suspend fun getCharacters() : List<CharacterList>? {
         return apiHelper?.getCharacters()?.results

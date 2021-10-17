@@ -3,7 +3,6 @@ package com.clover.cloverricknmorty.ui.base
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.clover.cloverricknmorty.app.MyApplication
-import com.clover.cloverricknmorty.data.api.ApiHelper
 import com.clover.cloverricknmorty.data.repository.MainRepository
 import com.clover.cloverricknmorty.ui.details.viewmodel.DetailsViewModel
 import com.clover.cloverricknmorty.ui.main.viewmodel.MainViewModel

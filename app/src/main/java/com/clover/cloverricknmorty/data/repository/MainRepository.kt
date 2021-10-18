@@ -14,15 +14,15 @@ interface MainRepository {
     suspend fun getCharacterLocation(id: String): CharacterLocation?
     suspend fun insertCharacters(applicationContext: Context, data : List<CharacterList> )
     suspend fun deleteDatabase(applicationContext: Context)
-    fun loadCharactersFromDatabase(applicationContext: Context) : List<CharacterList>
+    fun loadCharactersFromDatabase(applicationContext: Context) : List<CharacterList>?
     fun getCharacterById(id: Int, applicationContext: Context): CharacterList
-    fun loadCharacter_DB(applicationContext: Context) : CharacterDao
+    fun loadCharacter_DB(applicationContext: Context) : CharacterDao?
 }
 
 class MainRepositoryImp @Inject constructor(val apiService: ApiService) : MainRepository {
 
     override suspend fun getCharacters() : List<CharacterList>? {
-        return apiService.getCharacters()?.results
+        return apiService.getCharacters().results
     }
 
     override suspend fun getCharacterLocation(id: String): CharacterLocation? {
@@ -39,7 +39,7 @@ class MainRepositoryImp @Inject constructor(val apiService: ApiService) : MainRe
         loadCharacter_DB(applicationContext).deleteAll()
     }
 
-    override fun loadCharactersFromDatabase(applicationContext: Context) : List<CharacterList> {
+    override fun loadCharactersFromDatabase(applicationContext: Context) : List<CharacterList>? {
         Timber.i("Loading data from database")
         return loadCharacter_DB(applicationContext).getCharacters()
     }

@@ -64,6 +64,7 @@ class MainFragment : BaseFragment<FragmentMainBinding>(), OnItemClickListener {
                         binding.progressBar.visibility = View.GONE
                         binding.swipeRefreshLayout.isRefreshing = false
                         Toast.makeText(activity, it.message, Toast.LENGTH_LONG).show()
+                        binding.errorView.visibility = View.VISIBLE
                     }
                     Status.LOADING -> {
                         Timber.d("Request Loading")

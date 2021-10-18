@@ -40,7 +40,9 @@ class MainViewModel @Inject constructor(
         }
     }
 
-    private fun isDatabaseEmpty() = mainRepository.loadCharacter_DB(context).getCharacters().isEmpty()
+    fun isDatabaseEmpty(): Boolean {
+        return mainRepository.loadCharacter_DB(context)?.getCharacters()?.isEmpty() ?: false
+    }
 
     private suspend fun deleteDatabase() = mainRepository.deleteDatabase(context)
 

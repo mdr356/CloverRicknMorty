@@ -9,7 +9,7 @@ import com.clover.cloverricknmorty.data.model.CharacterList
 @Dao
 interface CharacterDao {
     @Query("SELECT * FROM characterlist")
-    fun getCharacters(): List<CharacterList>
+    fun getCharacters(): List<CharacterList>?
 
     @Query("SELECT * FROM characterlist WHERE id == (:id)")
     fun loadCharacterById(id: Int): CharacterList

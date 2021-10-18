@@ -19,6 +19,8 @@ class DetailsViewModel @Inject constructor(
         emit(mainRepository.getCharacterById(id, context))
     }
 
+    // Need to pass url to api service to replace base.
+    // Not an optional way
     fun getCharacterLocation(url: String) = liveData(Dispatchers.IO) {
         val arr = Pattern.compile("/").split(url)
         val id = arr[arr.size-1]

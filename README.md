@@ -38,3 +38,9 @@ recyclerview      load image/api call to get location data
 4. Push your branch (git push origin my-new-feature)
 5. Create a new Pull Request
 
+#API-REST
+documentation: https://rickandmortyapi.com/documentation/
+Base url: https://rickandmortyapi.com/api
+
+
+

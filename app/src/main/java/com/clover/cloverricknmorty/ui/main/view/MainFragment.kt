@@ -21,10 +21,9 @@ import javax.inject.Inject
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.
  */
-class MainFragment : BaseFragment<FragmentMainBinding>(), OnItemClickListener {
+class MainFragment @Inject constructor(val viewModel: MainViewModel) :
+    BaseFragment<FragmentMainBinding>(), OnItemClickListener {
 
-    @Inject
-    lateinit var viewModel: MainViewModel
 
     private lateinit var adapter: MainAdapter
 

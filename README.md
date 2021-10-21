@@ -1,4 +1,4 @@
-##About The app
+About The app
 Operations are performed by calling api endpoints over the network.
 
 Local data is in effect immutable, the client just downloads updated
@@ -16,7 +16,7 @@ Activities and fragments are for presentation logic only. Each
 activity or fragment should have its own ViewModels where business
 logic is placed. The ViewModel reacts to data changes via LiveData.
 
-View Models, API services, and repositories are injected using
+View Models, API services, and repositories and database are injected using
 Dagger Library.
 
 

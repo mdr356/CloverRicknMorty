@@ -1,6 +1,5 @@
 package com.clover.cloverricknmorty.ui.main.viewmodel
 
-import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.clover.cloverricknmorty.data.model.CharacterList
@@ -15,13 +14,13 @@ class MainViewModel @Inject constructor(private val mainRepository: MainReposito
     // using coroutine to take care of long running operation
     //network thread -> Dispatchers.IO
     fun getCharacters(refreshApiCall: Boolean = false) = liveData(Dispatchers.IO) {
+        emit(Resource.loading(null)) // loading
         if (isDatabaseEmpty() || refreshApiCall) {
             Timber.d("API call to Request Characters")
-            emit(Resource.loading(null)) // loading
             try {
                 val apiData = mainRepository.getCharacters()
                 Timber.i(apiData.toString())
-                apiData?.let { insertDataInDatabase(it) }
+                insertDataInDatabase(apiData!!)
                 emit(Resource.success(data = apiData))
             } catch (ioException: Exception) {
                 Timber.e("API call error.")
@@ -33,11 +32,19 @@ class MainViewModel @Inject constructor(private val mainRepository: MainReposito
                 )
             }
         } else {
-            emit(Resource.success(data = mainRepository.loadCharactersFromDatabase()))
+            val data = mainRepository.loadCharactersFromDatabase()
+            if (data.isNullOrEmpty()) {
+                emit(Resource.error(
+                    data = null,
+                    message = "Error loading data"
+                ))
+            } else {
+                emit(Resource.success(data = mainRepository.loadCharactersFromDatabase()))
+            }
         }
     }
 
-    fun isDatabaseEmpty(): Boolean = mainRepository.isDatabaseEmpty()
+    private fun isDatabaseEmpty(): Boolean = mainRepository.isDatabaseEmpty()
 
 
     private suspend fun deleteDatabase() = mainRepository.deleteDatabase()

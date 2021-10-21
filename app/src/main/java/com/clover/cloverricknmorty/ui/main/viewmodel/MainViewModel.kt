@@ -10,10 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import timber.log.Timber
 import javax.inject.Inject
 
-class MainViewModel @Inject constructor(
-    private val mainRepository: MainRepository,
-    private val context: Application
-): ViewModel(){
+class MainViewModel @Inject constructor(private val mainRepository: MainRepository): ViewModel(){
 
     // using coroutine to take care of long running operation
     //network thread -> Dispatchers.IO
@@ -36,19 +33,18 @@ class MainViewModel @Inject constructor(
                 )
             }
         } else {
-            emit(Resource.success(data = mainRepository.loadCharactersFromDatabase(context)))
+            emit(Resource.success(data = mainRepository.loadCharactersFromDatabase()))
         }
     }
 
-    fun isDatabaseEmpty(): Boolean {
-        return mainRepository.loadCharacter_DB(context)?.getCharacters()?.isEmpty() ?: false
-    }
+    fun isDatabaseEmpty(): Boolean = mainRepository.isDatabaseEmpty()
 
-    private suspend fun deleteDatabase() = mainRepository.deleteDatabase(context)
+
+    private suspend fun deleteDatabase() = mainRepository.deleteDatabase()
 
     private suspend fun insertDataInDatabase(apiData: List<CharacterList>) {
         deleteDatabase()
-        mainRepository.insertCharacters(context, apiData)
+        mainRepository.insertCharacters(apiData)
     }
 
 }

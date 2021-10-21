@@ -3,6 +3,7 @@ package com.clover.cloverricknmorty.di.component
 import android.app.Application
 import android.content.Context
 import com.clover.cloverricknmorty.app.MyApplication
+import com.clover.cloverricknmorty.di.module.AppModule
 import com.clover.cloverricknmorty.di.module.NetworkModule
 import com.clover.cloverricknmorty.di.module.RepositoryModule
 import com.clover.cloverricknmorty.di.module.ViewModelModule
@@ -17,6 +18,7 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = [
     AndroidSupportInjectionModule::class,
+    AppModule::class,
     ActivityModule::class,
     FragmentModule::class,
     NetworkModule::class,

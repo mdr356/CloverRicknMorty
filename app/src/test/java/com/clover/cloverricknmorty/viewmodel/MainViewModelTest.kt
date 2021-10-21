@@ -32,8 +32,6 @@ class MainViewModelTest {
     @Mock
     lateinit var mainRepository: MainRepository
     @Mock
-    lateinit var context: Application
-    @Mock
     lateinit var characterList: List<CharacterList>
     @Mock
     lateinit var characterDao: CharacterDao
@@ -44,7 +42,7 @@ class MainViewModelTest {
     @Throws(Exception::class)
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        viewModel = MainViewModel(mainRepository, context)
+        viewModel = MainViewModel(mainRepository)
         viewModel?.getCharacters()?.observeForever(observer);
     }
 
@@ -58,7 +56,6 @@ class MainViewModelTest {
     @Test
     fun testApiFetchDataSuccess() = runBlocking {
         `when`(characterDao.getCharacters()).thenReturn(arrayListOf())
-        `when`(mainRepository.loadCharacter_DB(context)).thenReturn(characterDao)
         `when`(mainRepository.getCharacters()).thenReturn(characterList)
         verify(observer).onChanged(Resource(status = Status.SUCCESS, data = arrayListOf(), message = null))
     }

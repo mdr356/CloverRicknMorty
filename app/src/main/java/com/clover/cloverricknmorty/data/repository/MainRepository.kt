@@ -42,7 +42,8 @@ class MainRepositoryImp @Inject constructor(
 
     override fun loadCharactersFromDatabase() : List<CharacterList>? {
         Timber.i("Loading data from database")
-        return database.getCharacters()
+        val data = database.getCharacters()
+        return if (data.isNullOrEmpty()) null else data
     }
     override fun getCharacterById(id: Int): CharacterList {
         return database.loadCharacterById(id)

@@ -1,6 +1,5 @@
 package com.clover.cloverricknmorty.ui.details.viewmodel
 
-import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.clover.cloverricknmorty.data.repository.MainRepository
@@ -12,11 +11,10 @@ import javax.inject.Inject
 
 class DetailsViewModel @Inject constructor(
     private val mainRepository: MainRepository,
-    private val context: Application
 ) : ViewModel() {
 
     fun getCharacterById(id: Int) = liveData(Dispatchers.Default) {
-        emit(mainRepository.getCharacterById(id, context))
+        emit(mainRepository.getCharacterById(id))
     }
 
     // Need to pass url to api service to replace base.

@@ -27,30 +27,10 @@ class MainAdapter(
             textView2.text = character.status
             textView3.text = character.species
 
-            /*name.text = user.username
-            phone.text = user.phone*/
-
             itemView.setOnClickListener {
                 clickListener.onItemClicked(character.id)
             }
         }
-
-        /*val textView1: TextView
-        val textView2: TextView
-        val textView3: TextView
-
-        init {
-            // Define click listener for the ViewHolder's View.
-            textView1 = itemView.findViewById(R.id.text_name)
-            textView2 = itemView.findViewById(R.id.text_status)
-            textView3 = itemView.findViewById(R.id.text_species)
-
-            itemView.setOnClickListener {
-                //we can then create an intent here and start a new activity
-                //with our data
-                clickListener.onItemClick(itemView)
-            }
-        }*/
 
     }
 

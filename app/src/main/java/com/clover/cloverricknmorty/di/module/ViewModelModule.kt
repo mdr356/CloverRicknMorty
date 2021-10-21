@@ -4,7 +4,6 @@ package com.clover.cloverricknmorty.di.module
 import androidx.annotation.NonNull
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.clover.cloverricknmorty.app.MyApplication
 import com.clover.cloverricknmorty.data.repository.MainRepository
 import com.clover.cloverricknmorty.ui.details.viewmodel.DetailsViewModel
 import com.clover.cloverricknmorty.ui.main.viewmodel.MainViewModel
@@ -39,15 +38,15 @@ class ViewModelModule {
     @Provides
     @IntoMap
     @ViewModelKey(MainViewModel::class)
-    fun provideGridViewModel(mainRepository: MainRepository, application: MyApplication): ViewModel {
-        return MainViewModel(mainRepository, application)
+    fun provideGridViewModel(mainRepository: MainRepository): ViewModel {
+        return MainViewModel(mainRepository)
     }
 
     @Provides
     @IntoMap
     @ViewModelKey(DetailsViewModel::class)
-    fun provideDetailsViewModel(mainRepository: MainRepository, application: MyApplication): ViewModel {
-        return DetailsViewModel(mainRepository, application)
+    fun provideDetailsViewModel(mainRepository: MainRepository): ViewModel {
+        return DetailsViewModel(mainRepository)
     }
 
     // Add More ViewModels as needed.

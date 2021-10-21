@@ -31,8 +31,6 @@ class DetailsViewModelTest {
     lateinit var observer: Observer<in Resource<CharacterLocation?>>
     @Mock
     lateinit var mainRepository: MainRepository
-    @Mock
-    lateinit var context: Application
 
     var characterLocation = CharacterLocation(1,"","","", arrayListOf(),"","")
 
@@ -42,7 +40,7 @@ class DetailsViewModelTest {
     @Throws(Exception::class)
     fun setUp() {
         MockitoAnnotations.initMocks(this)
-        viewModel = DetailsViewModel(mainRepository, context)
+        viewModel = DetailsViewModel(mainRepository)
         viewModel?.getCharacterLocation("1")?.observeForever(observer);
     }
 

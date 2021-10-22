@@ -55,7 +55,14 @@ dependencies {
     //testImplementation "android.arch.core:core-testing:$rootProject.androidArch"
 
     androidTestImplementation "androidx.test.ext:junit:$rootProject.junitVersion"
-    androidTestImplementation "androidx.test.espresso:espresso-core:espressoCoreVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoCore"
+    androidTestImplementation "androidx.test:runner:$rootProject.androidxTest"
+    androidTestImplementation "androidx.test:rules:$rootProject.androidxTest"
+    androidTestImplementation "io.mockk:mockk-android:$rootProject.mockkVersion"
+
+    debugImplementation "androidx.fragment:fragment-testing:$rootProject.fragment_version"
+
+
     debugImplementation "androidx.fragment:fragment-testing:$rootProject.fragmentVersion"
 
     testImplementation "androidx.arch.core:core-testing:$rootProject.coreTestingVersion"

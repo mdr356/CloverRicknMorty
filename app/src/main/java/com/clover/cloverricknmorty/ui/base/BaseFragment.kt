@@ -15,11 +15,9 @@ import io.reactivex.disposables.Disposable
  */
 abstract class BaseFragment<VBinding : ViewBinding> : DaggerFragment() {
 
-    protected lateinit var binding: VBinding
+    lateinit var binding: VBinding
     // getView Binding
     protected abstract fun getViewBinding(): VBinding
-
-    private val disposableContainer = CompositeDisposable()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,13 +48,4 @@ abstract class BaseFragment<VBinding : ViewBinding> : DaggerFragment() {
         binding = getViewBinding() // inflate view
         setUpViewModel() // setup view model
      }
-
-    // container which can hold multiple disposable
-    fun Disposable.addToContainer() = disposableContainer.add(this)
-
-    override fun onDestroyView() {
-        // remove view from container
-        disposableContainer.clear()
-        super.onDestroyView()
-    }
 }

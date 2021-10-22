@@ -45,8 +45,8 @@ class MainViewModelTest {
     @Test
     fun testApiFetchDataError() = runBlocking {
         `when`(characterDao.getCharacters()).thenReturn(null)
-        `when`(mainRepository.getCharacters()).thenReturn(null)
-        viewModel?.getCharacters(true)?.observeForever(observer)
+        `when`(mainRepository.getAllCharacters("")).thenReturn(null)
+        viewModel?.getAllCharacters(true, "")?.observeForever(observer)
         verifySequence {
             observer.onChanged(Resource(status= Status.LOADING, data=null, message=null))
             observer.onChanged(Resource(status= Status.ERROR, data=null, message="Error calling getCharacter() api"))
@@ -57,8 +57,8 @@ class MainViewModelTest {
     @Test
     fun testApiFetchDataSuccess() = runBlocking {
         `when`(characterDao.getCharacters()).thenReturn(arrayListOf())
-        `when`(mainRepository.getCharacters()).thenReturn(characterList)
-        viewModel?.getCharacters(true)?.observeForever(observer)
+        `when`(mainRepository.getAllCharacters("")).thenReturn(characterList)
+        viewModel?.getAllCharacters(true, "")?.observeForever(observer)
         verifySequence {
             observer.onChanged(Resource(status= Status.LOADING, data=null, message=null))
             observer.onChanged(Resource(status= Status.SUCCESS, data=characterList, message=null))
@@ -69,7 +69,7 @@ class MainViewModelTest {
     fun testDatabaseSuccess() = runBlocking {
         `when`(characterDao.getCharacters()).thenReturn(arrayListOf())
         `when`(mainRepository.loadCharactersFromDatabase()).thenReturn(characterList)
-        viewModel?.getCharacters(false)?.observeForever(observer)
+        viewModel?.getAllCharacters(false, "")?.observeForever(observer)
         verifySequence {
             observer.onChanged(Resource(status= Status.LOADING, data=null, message=null))
             observer.onChanged(Resource(status= Status.SUCCESS, data=characterList, message=null))
@@ -79,7 +79,7 @@ class MainViewModelTest {
     @Test
     fun testDatabaseError() = runBlocking {
         `when`(mainRepository.loadCharactersFromDatabase()).thenReturn(null)
-        viewModel?.getCharacters(false)?.observeForever(observer)
+        viewModel?.getAllCharacters(false, "")?.observeForever(observer)
         verifySequence {
             observer.onChanged(Resource(status= Status.LOADING, data=null, message=null))
             observer.onChanged(Resource(status= Status.ERROR, data=null, message="Error loading data"))

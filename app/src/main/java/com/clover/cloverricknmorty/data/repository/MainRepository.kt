@@ -8,7 +8,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 interface MainRepository {
-    suspend fun getCharacters() : List<CharacterList>?
+    suspend fun getAllCharacters(seachName: String) : List<CharacterList>?
     suspend fun getCharacterLocation(id: String): CharacterLocation?
     suspend fun insertCharacters(data : List<CharacterList> )
     suspend fun deleteDatabase()
@@ -22,8 +22,8 @@ class MainRepositoryImp @Inject constructor(
     val database: CharacterDao,
 ) : MainRepository {
 
-    override suspend fun getCharacters() : List<CharacterList>? {
-        return apiService.getCharacters().results
+    override suspend fun getAllCharacters(searchName: String) : List<CharacterList>? {
+        return apiService.getAllCharacters(searchName).results
     }
 
     override suspend fun getCharacterLocation(id: String): CharacterLocation? {

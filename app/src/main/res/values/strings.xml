@@ -17,4 +17,5 @@
     <string name="dimension">Dimension</string>
     <string name="residents"># Residents</string>
     <string name="error">ERROR</string>
+    <string name="searchMe">Search by name</string>
 </resources>

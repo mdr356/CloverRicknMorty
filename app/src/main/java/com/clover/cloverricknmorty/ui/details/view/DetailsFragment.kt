@@ -17,7 +17,7 @@ class DetailsFragment : BaseFragment<FragmentDetailsBinding>() {
 
     override fun getViewBinding(): FragmentDetailsBinding = FragmentDetailsBinding.inflate(layoutInflater)
 
-    override fun observeData(refreshApiCall : Boolean) {
+    override fun observeData(refreshApiCall : Boolean, searchName: String) {
 
         arguments?.let {
             viewModel.getCharacterById(it.getInt("characterId")).observe(this , {

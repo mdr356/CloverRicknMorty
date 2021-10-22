@@ -41,7 +41,7 @@ abstract class BaseFragment<VBinding : ViewBinding> : DaggerFragment() {
     // default optional empty implementation for views
     open fun setUpViews() {}
     open fun observeView() {}
-    open fun observeData(refreshApiCall : Boolean) {}
+    open fun observeData(refreshApiCall : Boolean, searchName: String="") {}
     open fun setUpViewModel(){}
 
     private fun init() {

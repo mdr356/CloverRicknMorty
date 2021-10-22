@@ -3,6 +3,7 @@ package com.clover.cloverricknmorty.ui.main.view
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -45,11 +46,20 @@ class MainFragment :
         binding.swipeRefreshLayout.setOnRefreshListener {
             observeData(true)
         }
+
+        binding.searchView.doAfterTextChanged {
+            when(val searchName = it.toString()) {
+                "" -> observeData(false,"")
+                else -> {
+                    observeData(true, searchName)
+                }
+            }
+        }
     }
 
-    override fun observeData(refreshApiCall : Boolean) {
-        super.observeData(refreshApiCall)
-        viewModel.getCharacters(refreshApiCall).observe(this, {
+    override fun observeData(refreshApiCall : Boolean, searchName: String) {
+        super.observeData(refreshApiCall, searchName)
+        viewModel.getAllCharacters(refreshApiCall, searchName).observe(this, {
             it?.let { resource ->
                 when (resource.status) {
                     Status.SUCCESS -> {
@@ -58,6 +68,7 @@ class MainFragment :
                         binding.progressBar.visibility = View.GONE
                         resource.data?.let { it -> addList(it) }
                         binding.swipeRefreshLayout.isRefreshing = false
+                        binding.errorView.visibility = View.INVISIBLE
                     }
                     Status.ERROR -> {
                         Timber.d("Request Error")
@@ -72,6 +83,7 @@ class MainFragment :
                         binding.progressBar.visibility = View.VISIBLE
                         binding.recyclerView.visibility = View.GONE
                         binding.swipeRefreshLayout.isRefreshing = false
+                        binding.errorView.visibility = View.INVISIBLE
                     }
                 }
             }

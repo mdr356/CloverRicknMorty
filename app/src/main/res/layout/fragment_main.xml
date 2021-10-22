@@ -6,10 +6,19 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.view.MainFragment">
 
+    <EditText
+        android:id="@+id/search_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:hint="@string/searchMe">
+
+    </EditText>
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/search_view"
         tools:context=".MainActivity">
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
